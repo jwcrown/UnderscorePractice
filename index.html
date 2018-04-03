@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- first include the underscore.js library -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js" type="text/javascript"></script> -->
+        <!-- or if the file is downloaded locally -->
+        <script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
+    </head>
+    <body>
+    <script>
+        var myState = {
+            name: "Washington",
+            capital: "Olympia",
+            population: 7062000,
+            nickname: "The Evergreen State"
+        };
+        var businesses = [
+            {
+                name: "Coding Dojo",
+                city:  "Bellevue"
+            },
+            {
+                name: "Facebook",
+                city: "Mountain View"
+            },
+            {
+                name: "Microsoft",
+                city: "Redmond"
+            },
+            {
+                name: "Expedia",
+                city: "Bellevue"
+            }
+        ];
+
+            var keysArray = [];
+            var valuesArray = [];
+            _.each(myState, function(value, key){ //iterates through each in object
+                keysArray.push(key);
+                valuesArray.push(value);
+                // alert(key+': '+value);
+            });
+            console.log(keysArray)
+            console.log(valuesArray)
+
+            var restoredObject = _.object(keysArray, valuesArray); //takes two arrays and makes an object
+            console.log(restoredObject)
+
+            var businessNames = _.pluck(businesses, 'name'); // returns array of all the values of said key
+            console.log(businessNames)
+
+            var microsoftObject = _.findWhere(businesses, {name: "Microsoft"}); //returns first object that matches filter
+            console.log(microsoftObject)
+
+            var businessesInBellevue = _.filter(businesses, function(business){ return business.city == "Bellevue"; }); //returns all objects that match filter
+            console.log(businessesInBellevue)
+
+            var sortedBusinesses = _.sortBy(businesses, 'city'); //returns an ascending sorted array by said key
+            console.log(sortedBusinesses)
+
+            var allCodingDojo = _.map(businesses, function(b){ var temp = _.clone(b); temp.name = "Coding Dojo"; return temp }); //map creates a new array and clone makes a duplicate object            console.log(allCodingDojo)
+
+            console.log(businesses)
+    </script>
+    </body>
+</html>
